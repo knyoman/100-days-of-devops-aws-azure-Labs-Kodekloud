@@ -106,3 +106,38 @@ az network vnet subnet show \
 ![images](/imgs_azure/day6_7.png)
 
 ---
+
+## Step9: Verifikasi Public IP Azure via CLI (Opsional)
+
+### 1. Menampilkan Detail Public IP
+
+```bash
+az network public-ip show \
+  --name devops-pip \
+  --resource-group <resource-group-name> \
+  --query "{Name:name,IP:ipAddress,SKU:sku.name,Assignment:publicIPAllocationMethod,Region:location}" \
+  --output table
+```
+
+--- 
+
+### 2. Melihat Daftar Public IP dalam Resource Group
+
+```bash
+az network public-ip list \
+  --resource-group <resource-group-name> \
+  --output table
+```
+
+--- 
+
+### 3. Mengecek Status Resource
+
+```bash
+az resource show \
+  --resource-group <resource-group-name> \
+  --name devops-pip \
+  --resource-type "Microsoft.Network/publicIPAddresses"
+```
+
+--- 
