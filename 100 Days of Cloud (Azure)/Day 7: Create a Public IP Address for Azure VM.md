@@ -21,13 +21,15 @@ Membuat Public IP Address dengan spesifikasi:
 
 Ketik `Public IP addresses` di kolom pencarian atas dan pilih layanan tersebut.
 
-
+![images](/imgs_azure/day7.png)
 
 ---
 
 ## Step 2 : Inisialisasi Resource Baru
 
 Klik tombol **+ Create** atau **+ Buat**.
+
+![images](/imgs_azure/day7_1.png)
 
 ---
 
@@ -44,6 +46,8 @@ Isi detail berikut:
 - **IP Version:** `IPv4`
 - **Assignment:** `Static`
 
+![images](/imgs_azure/day7_2.png)
+
 ---
 
 ## Step 4: Validasi dan Deployment
@@ -52,7 +56,10 @@ Klik **Review + create**.
 
 Pastikan muncul pesan hijau **Validation passed**, lalu klik **Create**.
 
+![images](/imgs_azure/day7_3.png)
+
 ---
 
 ## Step 5: Verifikasi Akhir
 
+![images](/imgs_azure/day7_4.png)
