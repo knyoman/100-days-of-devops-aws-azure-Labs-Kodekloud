@@ -1,96 +1,154 @@
 # Day 10: Linux Bash Scripts
 
-Dokumentasi ini menjelaskan langkah-langkah membuat dan menjalankan bash script untuk backup website di App Server 3.
+Dokumentasi ini menjelaskan langkah-langkah membuat dan menjalankan bash script untuk backup website di App Server 2 dan mengirimkannya ke Storage Server.
 
 ---
 
 ## 🎯 Objective
 
-Membuat script `news_backup.sh` yang mengkompresi folder `/var/www/html/news` dan mengirimkannya ke Nautilus Storage Server tanpa password.
+Membuat script `<name>_backup.sh` di App Server 2 untuk mengkompresi folder dan mengirimkannya ke Storage Server tanpa password.
 
 ---
 
-## Step 1 — Persiapan Awal di App Server 3
-
-Login ke App Server 3:
+## Step 1: SSH ke App Server 2
 
 ```bash
-ssh banner@stapp03
+ssh steve@stapp02
 ```
-
-Instal package zip:
-
-```bash
-sudo yum install zip -y
-```
-
-Buat direktori dan atur hak akses:
-
-```bash
-sudo mkdir -p /backup /scripts
-sudo chown -R banner:banner /backup /scripts
-```
+![images](/imgs_DevOps/day10.png)
 
 ---
 
-## Step 2 — Konfigurasi SSH Tanpa Password
+## Step 2: Install Package zip
+
+```bash
+sudo yum install -y zip
+```
+![images](/imgs_DevOps/day10_1.png)
+
+Verifikasi:
+
+```bash
+zip --version
+```
+![images](/imgs_DevOps/day10_2.png)
+
+---
+
+## Step 3: Setup SSH Key Passwordless ke Storage Server
 
 Generate SSH key:
 
 ```bash
-ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+ssh-keygen -t rsa -b 2048
 ```
+![images](/imgs_DevOps/day10_3.png)
 
-Kirim public key ke Storage Server (gunakan IP dari Details, misal 172.16.238.15):
+Tekan Enter terus (tanpa passphrase).
+
+Copy public key ke Storage Server:
 
 ```bash
-ssh-copy-id natasha@172.16.238.15
+ssh-copy-id natasha@ststor01
 ```
+![images](/imgs_DevOps/day10_4.png)
 
-Tes koneksi:
+Test koneksi:
 
 ```bash
-ssh natasha@172.16.238.15 exit
+ssh natasha@ststor01 "echo OK"
 ```
+![images](/imgs_DevOps/day10_5.png)
 
 ---
 
-## Step 3 — Pembuatan Bash Script news_backup.sh
+## Step 4: Buat Direktori /scripts
+
+```bash
+sudo mkdir -p /scripts
+sudo chown steve:steve /scripts
+```
+![images](/imgs_DevOps/day10_6.png)
+
+---
+
+## Step 5: Cek Direktori Website dan /backup
+
+Cek direktori website:
+
+```bash
+ls /var/www/html/
+```
+![images](/imgs_DevOps/day10_7.png)
+
+Catat Output buat ubah: `<name>`
+
+Cek direktori backup:
+
+```bash
+ls -ld /backup
+```
+---
+
+## Step 6: Buat Script news_backup.sh
 
 Buat file script:
 
 ```bash
 vi /scripts/news_backup.sh
 ```
-
-Isi script (sesuaikan IP Storage Server):
+Isi script (tekan `i`, paste kode berikut):
 
 ```bash
 #!/bin/bash
 
-# Membuat zip archive dari folder news
-zip -r /backup/xfusioncorp_news.zip /var/www/html/news
+SOURCE_DIR="/var/www/html/<name>"
+BACKUP_DIR="/backup"
+ARCHIVE_NAME="xfusioncorp_<name>.zip"
+STORAGE_USER="natasha"
+STORAGE_HOST="ststor01"
+STORAGE_PATH="/backup"
 
-# Menyalin arsip ke Nautilus Storage Server
-scp /backup/xfusioncorp_news.zip natasha@172.16.238.15:/backup/
+zip -r "${BACKUP_DIR}/${ARCHIVE_NAME}" "${SOURCE_DIR}"
+
+scp "${BACKUP_DIR}/${ARCHIVE_NAME}" "${STORAGE_USER}@${STORAGE_HOST}:${STORAGE_PATH}/"
 ```
+![images](/imgs_DevOps/day10_8.png)
 
-Simpan dan keluar.
-
-Berikan izin eksekusi:
-
-```bash
-chmod +x /scripts/news_backup.sh
-```
+Simpan dan keluar (Esc → `:wq` → Enter).
 
 ---
 
-## Step 4 — Uji Coba dan Verifikasi
-
-Jalankan script:
+## Step 7: Berikan Permission Eksekusi
 
 ```bash
-/scripts/news_backup.sh
+chmod +x /scripts/<name>_backup.sh
 ```
+![images](/imgs_DevOps/day10_9.png)
 
-Pastikan kompresi dan pengiriman berhasil tanpa password.
+---
+
+## Step 8: Jalankan Script
+
+```bash
+/scripts/<name>_backup.sh
+```
+![images](/imgs_DevOps/day10_10.png)
+
+---
+
+## Step 9: Verifikasi Final
+
+Cek archive di App Server 2:
+
+```bash
+ls -lh /backup/xfusioncorp_<name>.zip
+```
+![images](/imgs_DevOps/day10_11.png)
+
+Cek archive di Storage Server:
+
+```bash
+ssh natasha@ststor01 "ls -lh /backup/xfusioncorp_<name>.zip"
+```
+![images](/imgs_DevOps/day10_12.png)
