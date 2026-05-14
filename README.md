@@ -1,5 +1,9 @@
 <h1 align="center">100 Days of DevOps - AWS & Azure (KodeKloud)</h1>
 
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/212744287-14f66c13-5458-40dc-9244-8ff533fc8f4a.gif" alt="footer line" width="100%" />
+</div><table width="100%">
+
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/Program-100_Days_of_DevOps-00C7B7?style=for-the-badge&logo=kubernetes&logoColor=white" alt="100 Days of DevOps"></a>
   <a href="#"><img src="https://img.shields.io/badge/Institution-KodeKloud-FF6B35?style=for-the-badge&logo=udemy&logoColor=white" alt="KodeKloud"></a>
@@ -14,7 +18,9 @@
 ██████╔╝███████╗ ╚████╔╝ ╚██████╔╝██║     ███████║     ██║  ██║╚███╔███╔╝███████║     ██║  ██║███████╗╚██████╔╝██║  ██║███████╗
 ╚═════╝ ╚══════╝  ╚═══╝   ╚═════╝ ╚═╝     ╚══════╝     ╚═╝  ╚═╝ ╚══╝╚══╝ ╚══════╝     ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝
 ```
----
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" alt="Bottom Line" width="100%" />
+</div>
  
 ## 📌 Overview
  
@@ -22,12 +28,12 @@ Selamat datang di dokumentasi perjalanan **100 Hari DevOps** saya — sebuah kom
  
 Repository ini bukan sekadar catatan belajar — ini adalah **portofolio hands-on** yang mencerminkan skenario dunia kerja DevOps yang sesungguhnya.
  
----
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" alt="Bottom Line" width="100%" />
+</div>
 
 ## 🤝 Connect
 Jika kamu juga sedang belajar DevOps atau ingin diskusi, feel free untuk connect ⬇️
-
----
 
 <p align="left">
   <a href="https://www.linkedin.com/in/nyoman-kusuma" target="_blank">
@@ -41,6 +47,8 @@ Jika kamu juga sedang belajar DevOps atau ingin diskusi, feel free untuk connect
   </a>
 </p>
 
----
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" alt="Bottom Line" width="100%" />
+</div>
 
 > “Consistency beats intensity. 100 days, 1 step closer to mastery.”
